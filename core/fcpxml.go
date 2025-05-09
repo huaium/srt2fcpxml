@@ -2,6 +2,7 @@ package core
 
 import (
 	"encoding/xml"
+	"regexp"
 	"srt2fcpxml/core/FcpXML"
 	"srt2fcpxml/core/FcpXML/Library"
 	"srt2fcpxml/core/FcpXML/Library/Event"
@@ -28,12 +29,16 @@ func Srt2FcpXmlExport(projectName string, frameDuration interface{}, subtitles *
 	fcpxml.SetResources(res)
 	gap := Gap.NewGap(subtitles.Duration().Seconds())
 
+	// For subtitles with styles
+	combinedRegex := regexp.MustCompile(`<[^>]*>|\{\\an\d\}`) // match <font> & {\anX}
+
 	for index, item := range subtitles.Items {
 		textStyleDef := Title.NewTextStyleDef(index + 1)
 		text := Title.NewContent(index+1, func(lines []astisub.Line) string {
 			var os []string
 			for _, l := range lines {
-				os = append(os, l.String())
+				line := combinedRegex.ReplaceAllString(l.String(), "")
+				os = append(os, line)
 			}
 			return strings.Join(os, "\n")
 		}(item.Lines))
