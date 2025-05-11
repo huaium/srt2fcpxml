@@ -16,7 +16,7 @@ type Event struct {
 
 func NewEvent() *Event {
 	return &Event{
-		Name:    time.Now().Format("2006-01-02"),
+		Name:    time.Now().Format("2006-1-2"),
 		Uid:     uuid.NewV4().String(),
 		Project: &Project.Project{},
 	}

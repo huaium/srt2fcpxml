@@ -17,8 +17,8 @@ func TestFrameMap(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name:    "23.98",
-			args:    struct{ frameRate interface{} }{frameRate: 23.98},
+			name:    "23.976",
+			args:    struct{ frameRate interface{} }{frameRate: 23.976},
 			want:    1001 / float64(24000),
 			wantErr: false,
 		},
@@ -62,8 +62,8 @@ func TestFrameMapString(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "23.98",
-			args: struct{ frameRate interface{} }{frameRate: 23.98},
+			name: "23.976",
+			args: struct{ frameRate interface{} }{frameRate: 23.976},
 			want: "1001/24000",
 		},
 		{

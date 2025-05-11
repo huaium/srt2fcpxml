@@ -14,7 +14,7 @@ import (
 
 func main() {
 	srtFile := flag.String("srt", "", "srt subtitle file")
-	frameDurationPoint := flag.String("fd", "25", "frame rate currently supported 23.98、24、25、29.97、30、50、59.94、60")
+	frameDurationPoint := flag.String("fd", "25", "frame rate currently supported 23.976、24、25、29.97、30、50、59.94、60")
 	width := flag.Int("width", 1920, "width resolution default 1920")
 	height := flag.Int("height", 1080, "high resolution default 1080")
 

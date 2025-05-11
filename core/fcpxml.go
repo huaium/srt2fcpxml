@@ -42,7 +42,8 @@ func Srt2FcpXmlExport(projectName string, frameDuration interface{}, subtitles *
 			}
 			return strings.Join(os, "\n")
 		}(item.Lines))
-		title := Title.NewTitle(item.String(), item.StartAt.Seconds(), item.EndAt.Seconds()).SetTextStyleDef(textStyleDef).SetText(text)
+		// Use subtitle text itself as name
+		title := Title.NewTitle(text.TextStyle.Text, item.StartAt.Seconds(), item.EndAt.Seconds()).SetTextStyleDef(textStyleDef).SetText(text)
 		title.AddParam(Title.NewParams("Position", "9999/999166631/999166633/1/100/101", "0 -450"))
 		title.AddParam(Title.NewParams("Alignment", "9999/999166631/999166633/2/354/999169573/401", "1 (Center)"))
 		title.AddParam(Title.NewParams("Flatten", "9999/999166631/999166633/2/351", "1"))
